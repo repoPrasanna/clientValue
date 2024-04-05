@@ -1,15 +1,23 @@
 <template>
-    <div>
-        <form @submit.prevent="submitForm">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" v-model="form.name" class="form-control" required>
+    <div class="container">
+        <form @submit.prevent="submitForm" class="mt-5">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" id="name" v-model="form.name" class="form-control" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" v-model="form.email" class="form-control" required>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" id="email" v-model="form.email" class="form-control" required>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </form>
     </div>
 </template>
@@ -42,7 +50,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-/* Add any scoped styles here */
-</style>
