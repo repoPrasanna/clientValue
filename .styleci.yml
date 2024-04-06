@@ -1,2 +1,2 @@
 version: 1.0
-psr2: true
+preset: psr2
