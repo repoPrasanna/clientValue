@@ -45,4 +45,4 @@ jobs:
       run: vendor/bin/phpunit
 
     - name: Run Formatting
-      run: vendorbin/phpcs -d memory_limit=512M --standard=PSR2 /app
+      run: vendor/bin/pint

@@ -3,7 +3,6 @@
 
 namespace App\Repositories\Client;
 
-
 use App\Repositories\Crud\CrudRepository;
 use Illuminate\Support\Facades\Storage;
 

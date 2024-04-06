@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use App\Traits\ResponseTrait;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreClientRequest;
 use App\Repositories\Client\ClientInterface;
+use App\Traits\ResponseTrait;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class ClientsController extends Controller
 {
@@ -15,7 +15,7 @@ class ClientsController extends Controller
 
     private $clientRepository;
 
-    public function __construct(ClientInterface $clientRepository) {
+    public function __construct(ClientInterface $clientRepository)      {
         $this->clientRepository = $clientRepository;
     }
 
@@ -24,7 +24,8 @@ class ClientsController extends Controller
         try {
             return $this->responseSuccess($this->clientRepository->all(), 'Partners fetched successfully.');
         } catch (Exception $e) {
-            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
+            Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
+
             return $this->responseError();
         }
     }
@@ -34,7 +35,8 @@ class ClientsController extends Controller
         try {
             return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
         } catch (Exception $e) {
-            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
+            Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
+
             return $this->responseError();
         }
     }

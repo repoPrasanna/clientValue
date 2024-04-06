@@ -20,6 +20,7 @@ abstract class CrudRepository implements CrudInterface
         $partners = $this->fetchAllPartners();
         $partners[] = $data;
         $this->appendToFile($partners);
+
         return response()->json(['data' => $data]);
     }
 }
