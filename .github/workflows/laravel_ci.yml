@@ -21,6 +21,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y php8.0 php8.0-cli php8.0-common php8.0-json php8.0-opcache php8.0-mysql php8.0-xml php8.0-mbstring php8.0-zip
 
+    - name: Change directory to backend
+      run: cd clientValue/backend
+
     - name: Copy .env.example to .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
@@ -41,8 +44,8 @@ jobs:
     - name: Run Migrations
       run: php artisan migrate --graceful --ansi
 
-    - name: Run tests
-      run: vendor/bin/phpunit
+    - name: Run Pint
+      run: ./vendor/bin/pint
 
-    - name: Run Formatting
-      run: vendor/bin/pint
+    - name: Run tests
+      run: ./vendor/bin/phpunit
