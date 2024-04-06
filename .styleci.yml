@@ -1,4 +1,6 @@
 preset: psr2
 
+asdf
+
 enabled:
  - concat_with_spaces
