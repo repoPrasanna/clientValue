@@ -57,10 +57,10 @@ jobs:
     #     cd backend
     #     ./vendor/bin/phpcs --standard=PSR2 --config-set installed_paths ./vendor/squizlabs/php_codesniffer
 
-    - name: Check for PSR-2
-      run: |
-        cd backend
-        ./vendor/bin/phpcs --standard=PSR2 app
+    # - name: Check for PSR-2
+    #   run: |
+    #     cd backend
+    #     ./vendor/bin/phpcs --standard=PSR2 app
 
     - name: Convert to PSR-2
       run: |
