@@ -12,7 +12,6 @@ abstract class CrudRepository implements CrudInterface
         $csvFileName = 'clients.csv';
         $csvContent = $client['name'].",".$client['email'];
         Storage::disk('csv')->append($csvFileName, $csvContent);
-
         return response()->json(['data' => $csvContent]);
     }
 }
