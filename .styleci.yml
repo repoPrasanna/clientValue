@@ -1,7 +1,2 @@
 php:
-  preset: psr2
-  disabled:
-    - no_unused_imports
-  finder:
-    not-name:
-      - index.php
+ preset: psr2
