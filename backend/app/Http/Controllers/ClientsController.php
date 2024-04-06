@@ -25,7 +25,7 @@ class ClientsController extends Controller
         try {
             return $this->responseSuccess($this->clientRepository->all(), 'Partners fetched successfully.');
         } catch (Exception $e) {
-            Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
+            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
 
             return $this->responseError();
         }
@@ -40,7 +40,7 @@ class ClientsController extends Controller
 
             return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
         } catch (Exception $e) {
-            Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
+            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
 
             return $this->responseError();
         }
