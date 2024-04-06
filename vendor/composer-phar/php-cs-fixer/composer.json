@@ -1,0 +1,6 @@
+{
+  "name": "composer-phar/php-cs-fixer",
+  "description": "PHP-CS-Fixer/PHP-CS-Fixer",
+  "license": "MIT",
+  "bin": ["php-cs-fixer.phar"]
+}

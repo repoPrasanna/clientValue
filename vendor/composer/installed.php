@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => '__root__',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'ee629eeb54c57ef4799e2b9ff1e05f4ba1f2da19',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'ee629eeb54c57ef4799e2b9ff1e05f4ba1f2da19',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'composer-phar/php-cs-fixer' => array(
+            'pretty_version' => 'v3.51.0',
+            'version' => '3.51.0.0',
+            'reference' => '585b79e4ed7325473038ca9778218f5ff8daf0e6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../composer-phar/php-cs-fixer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'squizlabs/php_codesniffer' => array(
+            'pretty_version' => '3.9.1',
+            'version' => '3.9.1.0',
+            'reference' => '267a4405fff1d9c847134db3a3c92f1ab7f77909',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+    ),
+);
