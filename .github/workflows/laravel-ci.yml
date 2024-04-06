@@ -64,7 +64,7 @@ jobs:
 
     - name: Convert to PSR-2
       run: |
-        ./vendor/bin/phpcbf --standard=PSR2 app
+        ./vendor/bin/phpcbf --standard=PSR2 --extension=php ./
 
     - name: Ensure SQLite Database File Exists
       run: |
