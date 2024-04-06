@@ -16,8 +16,8 @@ class ClientsController extends Controller
     private $clientRepository;
 
     public function __construct(ClientInterface $clientRepository)                  {
-        $this->clientRepository = $clientRepository;
-    }
+               $this->clientRepository = $clientRepository;
+                   }
 
     public function index(): JsonResponse
     {
