@@ -1,26 +1,18 @@
-
 <?php
 
 namespace App\Repositories\Crud;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 abstract class CrudRepository implements CrudInterface
 {
-    public function all(): JsonResponse
+    public function store($client): JsonResponse
     {
-        $partners = $this->fetchAllPartners();
+        $csvFileName = 'clients.csv';
+        $csvContent = $client['name'].",".$client['email'];
+        Storage::disk('csv')->append($csvFileName, $csvContent);
 
-        return response()->json(['data' => $partners]);
-    }
-
-    public function store($data): string
-    {
-        $this->createFile();
-        $partners = $this->fetchAllPartners();
-        $partners[] = $data;
-        $this->appendToFile($partners);
-
-        return response()->json(['data' => $data]);
+        return response()->json(['data' => $csvContent]);
     }
 }
