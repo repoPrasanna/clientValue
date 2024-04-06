@@ -15,7 +15,8 @@ class ClientRepository extends CrudRepository implements ClientInterface
     public function createFile(): bool
     {
         $csvFileName = 'clients.csv';
-        $csvHeaders = "Name,Email";
+        $csvHeaders = 'Name,Email';
+
         return Storage::disk('csv')->put($csvFileName, $csvHeaders);
     }
 }
