@@ -1,2 +1,2 @@
-php:
- preset: psr2
+version: 1.0
+psr2: true
