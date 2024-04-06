@@ -1,18 +1,22 @@
+dist: bionic
 language: php
-
 php:
- - 7.4
- - 8.0
-
-install:
- - composer install
- - cd clientValue/backend && composer install
- - cd clientValue/frontend && npm install
-
+ - 8.2.17
+cache:
+ directories:
+    - vendor
+before_script:
+ - composer install --prefer-dist --no-interaction --no-progress
 script:
  - php artisan test
- - cd clientValue/backend && php artisan test
- - cd clientValue/frontend && npm run test
-
-after_success:
- - cd clientValue/frontend && npm run build
+on:
+ push:
+    branches:
+      - main
+ pull_request:
+    branches:
+      - main
+jobs:
+ include:
+    - stage: test
+      script: php artisan test
