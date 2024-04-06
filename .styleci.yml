@@ -1,4 +1,4 @@
 version: 1.0
-php_version: 8.0
+preset: psr2
 extensions:
  - php
