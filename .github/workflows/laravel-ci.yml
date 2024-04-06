@@ -57,14 +57,14 @@ jobs:
     #     cd backend
     #     ./vendor/bin/phpcs --standard=PSR2 --config-set installed_paths ./vendor/squizlabs/php_codesniffer
 
-    # - name: Check for PSR-2
-    #   run: |
-    #     cd backend
-    #     ./vendor/bin/phpcs --standard=PSR2 app
+    - name: Check for PSR-2
+      run: |
+        cd backend
+        ./vendor/bin/phpcs --standard=PSR2 app
 
-    # - name: Convert to PSR-2
-    #   run: |
-    #     ./vendor/bin/phpcbf --standard=PSR2 app
+    - name: Convert to PSR-2
+      run: |
+        ./vendor/bin/phpcbf --standard=PSR2 app
 
     - name: Ensure SQLite Database File Exists
       run: |
@@ -76,10 +76,10 @@ jobs:
         cd backend
         php artisan migrate --graceful --ansi
     
-    - name: Run Pint
-      run: |
-        cd backend
-        ./vendor/bin/pint
+    # - name: Run Pint
+    #   run: |
+    #     cd backend
+    #     ./vendor/bin/pint
 
     - name: Run tests
       run: |

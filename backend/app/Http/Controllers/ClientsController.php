@@ -17,18 +17,14 @@ class ClientsController extends Controller
 
     public function __construct(ClientInterface $clientRepository)             {
         $this->clientRepository = $clientRepository;
-    
-    
-    
-    
-                  }
+    }
 
     public function index(): JsonResponse
     {
         try {
             return $this->responseSuccess($this->clientRepository->all(), 'Partners fetched successfully.');
         } catch (Exception $e) {
-            Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
+            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
 
             return $this->responseError();
         }
@@ -37,13 +33,13 @@ class ClientsController extends Controller
     public function store(StoreClientRequest $request)
     {
         try {
-            if (! $this->clientRepository->checkIfFileExists()) {
+            if (!$this->clientRepository->checkIfFileExists()) {
                 $this->clientRepository->createFile();
             }
 
             return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
         } catch (Exception $e) {
-            Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
+            Log::info($e->getMessage() . ' | File: ' . __FILE__ . ' | Line: ' . __LINE__);
 
             return $this->responseError();
         }
