@@ -6,5 +6,5 @@ interface ClientInterface
 {
     public function checkIfFileExists(): bool;
 
-    public function createFile(): bool;
+    public function createFile(array $client): bool;
 }

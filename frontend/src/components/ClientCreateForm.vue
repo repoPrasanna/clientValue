@@ -44,19 +44,20 @@
             <div class="form-group row">
                 <label for="dob" class="col-sm-3 col-form-label custom-label">Date of Birth</label>
                 <div class="col-sm-9">
-                    <input type="date" id="dob" v-model="form.dob" class="form-control" placeholder="mm/dd/yyyy">
+                    <input type="date" id="dob" v-model="form.date_of_birth" class="form-control"
+                        placeholder="mm/dd/yyyy">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="education" class="col-sm-3 col-form-label custom-label">Education Background</label>
                 <div class="col-sm-9">
-                    <input type="text" id="education" v-model="form.education" class="form-control">
+                    <input type="text" id="education" v-model="form.education_background" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contact" class="col-sm-3 col-form-label custom-label">Preferred Mode of Contact</label>
                 <div class="col-sm-9">
-                    <select id="contact" v-model="form.contact" class="form-control">
+                    <select id="contact" v-model="form.preferred_mode_of_contact" class="form-control">
                         <option value="">Select Preferred Contact</option>
                         <option value="email">Email</option>
                         <option value="phone">Phone</option>
@@ -87,25 +88,29 @@ export default {
                 email: '',
                 address: '',
                 nationality: '',
-                dob: '',
-                education: '',
-                contact: '',
+                date_of_birth: '',
+                education_background: '',
+                preferred_mode_of_contact: '',
             },
         };
     },
     methods: {
         submitForm() {
-            axios.post('http://localhost:8000/api/client/create', this.form)
+            const API_URL = process.env.VUE_APP_API_URL; // Assuming you have defined VUE_APP_API_URL in your .env file
+            axios.post(`${API_URL}/client`, this.form)
                 .then(response => {
                     console.log(response.data);
-                    // Handle success, e.g., clear form or show a success message
+                    // Handle success
                 })
                 .catch(error => {
                     console.error(error);
-                    // Handle error, e.g., show an error message
+                    // Handle error
                 });
         },
-    },
+    }
+
+
+
 };
 </script>
 

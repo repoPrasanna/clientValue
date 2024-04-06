@@ -35,7 +35,7 @@ class ClientsController extends Controller
     {
         try {
             if (! $this->clientRepository->checkIfFileExists()) {
-                $this->clientRepository->createFile();
+                $this->clientRepository->createFile($request->all());
             }
 
             return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
