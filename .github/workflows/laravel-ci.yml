@@ -60,7 +60,7 @@ jobs:
     - name: Run PHP Code Sniffer
       run: |
         cd backend
-        ./vendor/bin/phpcs --standard=PSR2 --extensions=php --fix --encoding=utf-8
+        ./vendor/bin/phpcs --standard=PSR2 --extensions=php
 
     - name: Ensure SQLite Database File Exists
       run: |
