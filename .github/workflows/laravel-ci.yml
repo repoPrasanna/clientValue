@@ -21,21 +21,23 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-opcache php8.2-mysql php8.2-xml php8.2-mbstring php8.2-zip php8.2-curl
 
-    - name: Run tests
-      run: |
-        cd backend
-        php artisan test
-        
-    - name: Copy .env.example to .env
-      run: |
-        cd backend
-        php -r "file_exists('.env') || copy('.env.example', '.env');"
-
     - name: Install Composer
       run: |
         cd backend
         php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+    - name: Run tests
+      run: |
+        cd backend
+        php artisan test
+
+    - name: Copy .env.example to .env
+      run: |
+        cd backend
+        php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+
 
     - name: Install dependencies
       run: |
