@@ -1,0 +1,26 @@
+name: Laravel Tests
+
+on: [push, pull_request]
+
+jobs:
+ laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2.17'
+        extensions: mbstring, intl, pdo_mysql
+
+    - name: Install dependencies
+      run: |
+        cd backend
+        composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run tests
+      run: |
+        cd backend
+        ./vendor/bin/phpunit
