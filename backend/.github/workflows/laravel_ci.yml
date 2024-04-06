@@ -1,0 +1,45 @@
+name: Laravel CI
+
+on:
+ push:
+    branches: [ main ]
+ pull_request:
+    branches: [ main ]
+
+jobs:
+ build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install PHP 8
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y software-properties-common
+        sudo add-apt-repository ppa:ondrej/php
+        sudo apt-get update
+        sudo apt-get install -y php8.0 php8.0-cli php8.0-common php8.0-json php8.0-opcache php8.0-mysql php8.0-xml php8.0-mbstring php8.0-zip
+
+    - name: Copy .env.example to .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+    - name: Install Composer
+      run: |
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+    - name: Install dependencies
+      run: composer install
+
+    - name: Generate Application Key
+      run: php artisan key:generate --ansi
+
+    - name: Ensure SQLite Database File Exists
+      run: php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+
+    - name: Run Migrations
+      run: php artisan migrate --graceful --ansi
+
+    - name: Run tests
+      run: vendor/bin/phpunit
