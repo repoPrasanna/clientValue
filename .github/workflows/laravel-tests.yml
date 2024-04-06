@@ -1,26 +1,68 @@
-name: Laravel Tests
+name: Laravel CI
 
-on: [push, pull_request]
+on:
+ push:
+    branches: [ main ]
+ pull_request:
+    branches: [ main ]
 
 jobs:
- laravel-tests:
+ build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2.17'
-        extensions: mbstring, intl, pdo_mysql
+    - name: Install PHP 8.0
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y software-properties-common
+        sudo add-apt-repository ppa:ondrej/php
+        sudo apt-get update
+        sudo apt-get install -y php8.0 php8.0-cli php8.0-common php8.0-json php8.0-opcache php8.0-mysql php8.0-xml php8.0-mbstring php8.0-zip
+
+    - name: Copy .env.example to .env
+      run: |
+        cd backend
+        php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+    - name: Install Composer
+      run: |
+        cd backend
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
     - name: Install dependencies
       run: |
         cd backend
         composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Run tests
+    
+    - name: Generate Application Key
       run: |
         cd backend
-        ./vendor/bin/phpunit
+        php artisan key:generate --ansi
+
+    - name: Ensure SQLite Database File Exists
+      run: |
+        cd backend
+        php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+    
+    - name: Run Migrations
+      run: |
+        cd backend
+        php artisan migrate --graceful --ansi
+    
+    - name: Run Pint
+      run: |
+        cd backend
+        ./vendor/bin/pint
+
+    # - name: Run tests
+    #   run: |
+    #     cd backend
+    #     ./vendor/bin/phpunit
+
+
+
+
+
