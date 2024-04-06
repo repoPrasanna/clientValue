@@ -15,9 +15,13 @@ class ClientsController extends Controller
 
     private $clientRepository;
 
-    public function __construct(ClientInterface $clientRepository)                  {
+    public function __construct(ClientInterface $clientRepository)             {
         $this->clientRepository = $clientRepository;
-    }
+    
+    
+    
+    
+                  }
 
     public function index(): JsonResponse
     {
@@ -38,7 +42,6 @@ class ClientsController extends Controller
             }
 
             return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
-
         } catch (Exception $e) {
             Log::info($e->getMessage().' | File: '.__FILE__.' | Line: '.__LINE__);
 
