@@ -29,7 +29,7 @@ class ClientsController extends Controller
         }
     }
 
-    public function store(StoreClientRequest $request)         {
+    public function store(StoreClientRequest $request)          {
         try {
             return $this->responseSuccess($this->clientRepository->store($request->all()), 'Partners added successfully.');
         } catch (Exception $e) {
