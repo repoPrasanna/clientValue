@@ -1,0 +1,18 @@
+language: php
+
+php:
+ - 7.4
+ - 8.0
+
+install:
+ - composer install
+ - cd clientValue/backend && composer install
+ - cd clientValue/frontend && npm install
+
+script:
+ - php artisan test
+ - cd clientValue/backend && php artisan test
+ - cd clientValue/frontend && npm run test
+
+after_success:
+ - cd clientValue/frontend && npm run build
