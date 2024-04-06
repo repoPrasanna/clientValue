@@ -32,24 +32,28 @@ jobs:
         cd backend
         composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Run tests
-      run: |
-        cd backend
-        php artisan test
-
     - name: Copy .env.example to .env
       run: |
         cd backend
         php -r "file_exists('.env') || copy('.env.example', '.env');"
 
+    - name: Generate Application Key
+      run: |
+        cd backend
+        php artisan key:generate --ansi
+
+    - name: Run tests
+      run: |
+        cd backend
+        php artisan test
+
+
+
 
 
 
     
-    # - name: Generate Application Key
-    #   run: |
-    #     cd backend
-    #     php artisan key:generate --ansi
+
 
     # - name: Ensure SQLite Database File Exists
     #   run: |
