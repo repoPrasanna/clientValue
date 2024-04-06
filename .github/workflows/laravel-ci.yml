@@ -27,6 +27,11 @@ jobs:
         php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+    - name: Install dependencies
+      run: |
+        cd backend
+        composer install --prefer-dist --no-progress --no-suggest
+
     - name: Run tests
       run: |
         cd backend
@@ -39,10 +44,7 @@ jobs:
 
 
 
-    - name: Install dependencies
-      run: |
-        cd backend
-        composer install --prefer-dist --no-progress --no-suggest
+
     
     # - name: Generate Application Key
     #   run: |
