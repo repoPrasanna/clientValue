@@ -19,7 +19,7 @@ class ClientsController extends Controller
         $this->clientRepository = $clientRepository;
     }
 
-    public function index(): JsonResponse                             {
+    public function index(): JsonResponse                              {
         try {
             return $this->responseSuccess($this->clientRepository->all(), 'Partners fetched successfully.');
         } catch (Exception $e) {
