@@ -42,6 +42,22 @@ jobs:
         cd backend
         php artisan key:generate --ansi
 
+    - name: Install PHP Code Sniffer
+      run: |
+        cd backend
+        composer require "squizlabs/php_codesniffer=*"
+
+    - name: Install PHP CS Fixer
+      run: |
+        cd backend
+        composer require "php-cs-fixer/php-cs-fixer"
+
+    - name: Run PHP Code Sniffer
+      run: |
+        cd backend
+        ./vendor/bin/phpcs --standard=PSR2 --config-set installed_paths ./vendor/squizlabs/php_codesniffer
+        # ./vendor/bin/phpcs --standard=PSR2 /path/to/your/code --fix --encoding=utf-8
+
     - name: Ensure SQLite Database File Exists
       run: |
         cd backend
@@ -52,10 +68,10 @@ jobs:
         cd backend
         php artisan migrate --graceful --ansi
     
-    - name: Run Pint
-      run: |
-        cd backend
-        ./vendor/bin/pint
+    # - name: Run Pint
+    #   run: |
+    #     cd backend
+    #     ./vendor/bin/pint
 
     - name: Run tests
       run: |
