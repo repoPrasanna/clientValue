@@ -57,10 +57,10 @@ jobs:
         cd backend
         ./vendor/bin/pint
 
-    # - name: Run tests
-    #   run: |
-    #     cd backend
-    #     ./vendor/bin/phpunit
+    - name: Run tests
+      run: |
+        cd backend
+        php artisan test
 
 
 
