@@ -1,4 +1,2 @@
 version: 1.0
 preset: psr2
-extensions:
- - php
