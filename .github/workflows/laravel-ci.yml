@@ -1,4 +1,4 @@
-name: Laravel CI
+name: clientHub.app
 
 on:
  push:
@@ -21,11 +21,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-opcache php8.2-mysql php8.2-xml php8.2-mbstring php8.2-zip php8.2-curl
 
-    - name: Copy .env.example to .env
-      run: |
-        cd backend
-        php -r "file_exists('.env') || copy('.env.example', '.env');"
-
     - name: Install Composer
       run: |
         cd backend
@@ -36,57 +31,18 @@ jobs:
       run: |
         cd backend
         composer install --prefer-dist --no-progress --no-suggest
-    
+
+    - name: Copy .env.example to .env
+      run: |
+        cd backend
+        php -r "file_exists('.env') || copy('.env.example', '.env');"
+
     - name: Generate Application Key
       run: |
         cd backend
         php artisan key:generate --ansi
 
-    # - name: Install PHP Code Sniffer
-    #   run: |
-    #     cd backend
-    #     composer require "squizlabs/php_codesniffer=*"
-
-    # - name: Install PHP CS Fixer
-    #   run: |
-    #     cd backend
-    #     composer require "composer-phar/php-cs-fixer"
-
-    # - name: Run PHP Code Sniffer
-    #   run: |
-    #     cd backend
-    #     ./vendor/bin/phpcs --standard=PSR2 --config-set installed_paths ./vendor/squizlabs/php_codesniffer
-
-    # - name: Check for PSR-2
-    #   run: |
-    #     cd backend
-    #     ./vendor/bin/phpcs --standard=PSR2 app
-
-    # - name: Convert to PSR-2
-    #   run: |
-    #     ./vendor/bin/phpcbf --standard=PSR2 app
-
-    - name: Ensure SQLite Database File Exists
-      run: |
-        cd backend
-        php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
-    
-    - name: Run Migrations
-      run: |
-        cd backend
-        php artisan migrate --graceful --ansi
-    
-    - name: Run Pint
-      run: |
-        cd backend
-        ./vendor/bin/pint
-
     - name: Run tests
       run: |
         cd backend
         php artisan test
-
-
-
-
-
