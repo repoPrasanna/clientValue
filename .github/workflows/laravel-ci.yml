@@ -46,21 +46,3 @@ jobs:
       run: |
         cd backend
         php artisan test
-
-
-
-
-
-
-    
-
-
-    # - name: Ensure SQLite Database File Exists
-    #   run: |
-    #     cd backend
-    #     php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
-    
-    # - name: Run Migrations
-    #   run: |
-    #     cd backend
-    #     php artisan migrate --graceful --ansi
